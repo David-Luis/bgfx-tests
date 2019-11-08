@@ -4,6 +4,7 @@
 #include <bx/bx.h>
 #include <bx/allocator.h>
 #include <bx/file.h>
+#include <bx/timer.h>
 #include <bgfx/bgfx.h>
 #include <bgfx/platform.h>
 #include <GLFW/glfw3.h>
@@ -52,6 +53,9 @@ void CGLFWBGFXApplication::Initialize()
 	InitGraphics();
 	InitSystems();
 
+	m_startTime = bx::getHPCounter();
+	m_currentTime = m_startTime;
+
 	OnInitialize();
 }
 
@@ -74,8 +78,9 @@ void CGLFWBGFXApplication::RenderLoop()
 		const bgfx::Stats* stats = bgfx::getStats();
 		bgfx::dbgTextPrintf(0, 1, 0x0f, "Backbuffer %dW x %dH in pixels, debug text %dW x %dH in characters.", stats->width, stats->height, stats->textWidth, stats->textHeight);
 
-		OnRender
-		();
+		float time = (float)((bx::getHPCounter() - m_currentTime) / double(bx::getHPFrequency()));
+		m_currentTime = bx::getHPCounter();
+		OnRender(time);
 
 		// Enable stats or debug text.
 		bgfx::setDebug(GLFWBGFXApplicationInternal::s_showStats ? BGFX_DEBUG_STATS : BGFX_DEBUG_TEXT);
@@ -128,4 +133,9 @@ void CGLFWBGFXApplication::InitSystems()
 bx::FileReaderI* CGLFWBGFXApplication::GetFileReader()
 {
 	return m_fileReader;
+}
+
+float CGLFWBGFXApplication::GetTotalTime()
+{
+	return (float)((bx::getHPCounter() - m_startTime) / double(bx::getHPFrequency()));
 }
