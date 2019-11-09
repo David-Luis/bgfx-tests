@@ -4,6 +4,11 @@
 
 #include <bx/math.h>
 
+CHelloWorldApplication::CHelloWorldApplication(int width, int height)
+	: CGLFWBGFXApplication(width, height)
+{
+}
+
 CHelloWorldApplication::~CHelloWorldApplication()
 {
 	geometry.reset();

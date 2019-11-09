@@ -37,3 +37,6 @@ def create_shader(name):
 	
 create_shader("color")
 create_shader("time_color")
+create_shader("noise")
+create_shader("test")
+create_shader("graphs")

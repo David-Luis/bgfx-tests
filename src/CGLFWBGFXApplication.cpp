@@ -39,7 +39,9 @@ namespace GLFWBGFXApplicationInternal
 	}
 }
 
-CGLFWBGFXApplication::CGLFWBGFXApplication()
+CGLFWBGFXApplication::CGLFWBGFXApplication(int width, int height)
+	: m_width(width)
+	, m_height(height)
 {
 }
 
@@ -96,10 +98,14 @@ void CGLFWBGFXApplication::InitGraphics()
 	if (!glfwInit())
 		return;
 	glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-	m_window = glfwCreateWindow(1024, 768, "helloworld", nullptr, nullptr);
+	m_window = glfwCreateWindow(m_width, m_height, "helloworld", nullptr, nullptr);
 	if (!m_window)
 		return;
+
+	glfwSetWindowUserPointer(m_window, this);
+
 	glfwSetKeyCallback(m_window, GLFWBGFXApplicationInternal::glfw_keyCallback);
+
 	// Call bgfx::renderFrame before bgfx::init to signal to bgfx not to create a render thread.
 	// Most graphics APIs must be used on the same thread that created the window.
 	bgfx::renderFrame();

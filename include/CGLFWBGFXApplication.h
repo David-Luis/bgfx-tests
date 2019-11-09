@@ -13,7 +13,7 @@ namespace bx
 class CGLFWBGFXApplication
 {
 public:
-	CGLFWBGFXApplication();
+	CGLFWBGFXApplication(int width, int height);
 	virtual ~CGLFWBGFXApplication();
 	CGLFWBGFXApplication(const CGLFWBGFXApplication&) = delete;
 	CGLFWBGFXApplication& operator=(const CGLFWBGFXApplication&) = delete;

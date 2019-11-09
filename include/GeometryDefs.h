@@ -16,6 +16,7 @@ struct SVertexLayout
 			.begin()
 			.add(bgfx::Attrib::Position, 3, bgfx::AttribType::Float)
 			.add(bgfx::Attrib::Color0, 4, bgfx::AttribType::Uint8, true)
+			.add(bgfx::Attrib::TexCoord0, 2, bgfx::AttribType::Float)
 			.end();
 	}
 };
@@ -26,6 +27,8 @@ struct PosColorVertex
 	float m_y;
 	float m_z;
 	uint32_t m_abgr;
+	float uv_x;
+	float uv_y;
 };
 
 struct SGeometry
@@ -43,14 +46,14 @@ struct SCubeGeometry : public SGeometry
 	{
 		m_vertices =
 		{
-			{{ -1.0f,  1.0f,  1.0f, 0xff000000 },
-		{ 1.0f,  1.0f,  1.0f, 0xff0000ff },
-		{ -1.0f, -1.0f,  1.0f, 0xff00ff00 },
-		{ 1.0f, -1.0f,  1.0f, 0xff00ffff },
-		{ -1.0f,  1.0f, -1.0f, 0xffff0000 },
-		{ 1.0f,  1.0f, -1.0f, 0xffff00ff },
-		{ -1.0f, -1.0f, -1.0f, 0xffffff00 },
-		{ 1.0f, -1.0f, -1.0f, 0xffffffff },
+			{{ -1.0f,  1.0f,  1.0f, 0xff000000, 0.0f, 0.0f },
+		{ 1.0f,  1.0f,  1.0f, 0xff0000ff, 1.0f, 0.0f },
+		{ -1.0f, -1.0f,  1.0f, 0xff00ff00, 0.0f, 1.0f },
+		{ 1.0f, -1.0f,  1.0f, 0xff00ffff , 1.0f, 1.0f},
+		{ -1.0f,  1.0f, -1.0f, 0xffff0000, 1.0f, 0.0f },
+		{ 1.0f,  1.0f, -1.0f, 0xffff00ff, 0.0f, 0.0f },
+		{ -1.0f, -1.0f, -1.0f, 0xffffff00, 1.0f, 1.0f },
+		{ 1.0f, -1.0f, -1.0f, 0xffffffff, 0.0f, 1.0f },
 		} };
 
 		m_triList =
@@ -98,16 +101,16 @@ struct SPlaneGeometry : public SGeometry
 	{
 		m_vertices =
 		{
-			{ { -1.0f,  1.0f,  1.0f, 0xff000000 },
-			  { 1.0f,  1.0f,  1.0f, 0xff0000ff },
-			  { -1.0f, -1.0f,  1.0f, 0xff00ff00 },
-			  { 1.0f, -1.0f,  1.0f, 0xff00ffff },
+			{ { -1.0f,  1.0f,  1.0f, 0xffffffff, 0.0f, 1.0f },
+			  { 1.0f,  1.0f,  1.0f, 0xffffffff, 1.0f, 1.0f },
+			  { -1.0f, -1.0f,  1.0f, 0xffffffff, 0.0f, 0.0f },
+			  { 1.0f, -1.0f,  1.0f, 0xffffffff, 1.0f, 0.0f },
 			} };
 
 		m_triList =
 		{
-			0, 1, 2, // 0
-			1, 3, 2,
+			2, 1, 0, // 0
+			2, 3, 1
 		};
 
 		m_vbh = bgfx::createVertexBuffer(

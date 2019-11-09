@@ -5,11 +5,11 @@
 
 #include <memory>
 
-class CHelloWorldApplication : public CGLFWBGFXApplication
+class CShadersTestApplication : public CGLFWBGFXApplication
 {
 public:
-	CHelloWorldApplication(int width, int height);
-	~CHelloWorldApplication() override;
+	CShadersTestApplication(int width, int height);
+	~CShadersTestApplication() override;
 
 protected:
 	void OnInitialize() override;
@@ -18,5 +18,5 @@ protected:
 private:
 	std::unique_ptr<SGeometry> geometry;
 	bgfx::ProgramHandle m_program;
-	bgfx::UniformHandle m_timeUniform;
+	bgfx::UniformHandle m_dataUniform;
 };
