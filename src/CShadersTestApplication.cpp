@@ -24,7 +24,7 @@ void CShadersTestApplication::OnInitialize()
 
 	m_dataUniform = bgfx::createUniform("u_data", bgfx::UniformType::Vec4);
 	//m_program = BGFXUtils::LoadProgram(GetFileReader(), "noise_vs", "noise_fs");
-	m_program = BGFXUtils::LoadProgram(GetFileReader(), "test_vs", "test_fs");
+	m_program = BGFXUtils::LoadProgram(GetFileReader(), "raymarching_and_sdf_vs", "raymarching_and_sdf_fs");
 	//m_program = BGFXUtils::LoadProgram(GetFileReader(), "graphs_vs", "graphs_fs");
 
 }

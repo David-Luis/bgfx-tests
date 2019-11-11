@@ -6,12 +6,12 @@ $input v_color0, v_texcoord0
 // Added a second way to do triangle noise without doing
 // a second random sample.
 
-const int NUM_BUCKETS = 32;
-const int ITER_PER_BUCKET = 1024;
-const float HIST_SCALE = 8.0;
+CONST(int NUM_BUCKETS = 32);
+CONST(int ITER_PER_BUCKET = 244);
+CONST(float HIST_SCALE = 8.0);
 
-const float NUM_BUCKETS_F = 32.0;
-const float ITER_PER_BUCKET_F = 1024.0;
+CONST(float NUM_BUCKETS_F = 32.0);
+CONST(float ITER_PER_BUCKET_F = 244.0);
 
 uniform vec4 u_data;
 
