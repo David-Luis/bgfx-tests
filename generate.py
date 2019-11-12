@@ -27,8 +27,8 @@ os.system("premake5.exe vs2017")
 
 def create_shader(name):
 	#dx9
-	os.system(f'shadercDebug.exe -f "res/shaders/{name}_fs.sc" --varyingdef "res/shaders/{name}_varying.sc" -o "build/vs2017/shaders/dx9/{name}_fs.bin" --type f --platform windows -p ps_3_0 -O 3')
-	os.system(f'shadercDebug.exe -f "res/shaders/{name}_vs.sc" --varyingdef "res/shaders/{name}_varying.sc" -o "build/vs2017/shaders/dx9/{name}_vs.bin" --type v --platform windows -p vs_3_0 -O 3')
+	#os.system(f'shadercDebug.exe -f "res/shaders/{name}_fs.sc" --varyingdef "res/shaders/{name}_varying.sc" -o "build/vs2017/shaders/dx9/{name}_fs.bin" --type f --platform windows -p ps_3_0 -O 3')
+	#os.system(f'shadercDebug.exe -f "res/shaders/{name}_vs.sc" --varyingdef "res/shaders/{name}_varying.sc" -o "build/vs2017/shaders/dx9/{name}_vs.bin" --type v --platform windows -p vs_3_0 -O 3')
 
 	#dx11
 	os.system(f'shadercDebug.exe -f "res/shaders/{name}_fs.sc" --varyingdef "res/shaders/{name}_varying.sc" -o "build/vs2017/shaders/dx11/{name}_fs.bin" --type f --platform windows -p ps_5_0 -O 3')
