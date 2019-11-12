@@ -1,7 +1,8 @@
 $input a_position, a_color0, a_texcoord0
 $output v_color0, v_texcoord0
 
-#include "common/common.sh"
+#include "common/bgfx_shader.sh"
+#include "common/shaderlib.sh"
 
 void main()
 {

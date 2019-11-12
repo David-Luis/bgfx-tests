@@ -1,6 +1,7 @@
 $input v_color0, v_texcoord0
 
-#include "common/common.sh"
+#include "common/bgfx_shader.sh"
+#include "common/shaderlib.sh"
 
 uniform vec4 u_data;
 

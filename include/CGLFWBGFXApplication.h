@@ -1,5 +1,7 @@
 #pragma once
 
+#include <bx/allocator.h>
+
 #include <stdint.h>
 
 struct GLFWwindow;
@@ -22,6 +24,10 @@ public:
 	void RenderLoop();
 
 	bx::FileReaderI* GetFileReader();
+	static bx::AllocatorI* GetAllocator()
+	{
+		return &s_allocator;
+	}
 
 	int GetWidth() { return m_width; }
 	int GetHeight() { return m_height; }
@@ -36,8 +42,8 @@ private:
 	void InitGraphics();
 	void InitSystems();
 
-	bx::AllocatorI* m_allocator;
 	bx::FileReaderI* m_fileReader;
+	static bx::DefaultAllocator s_allocator;
 
 	GLFWwindow * m_window;
 	int m_width;

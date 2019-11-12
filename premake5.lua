@@ -50,6 +50,7 @@ project "helloworld"
 	{
 		path.join(BGFX_DIR, "include"),
 		path.join(BX_DIR, "include"),
+		path.join(BIMG_DIR, "include"),
 		path.join(GLFW_DIR, "include")
 	}
 	links { "bgfx", "bimg", "bx", "glfw" }
@@ -107,6 +108,7 @@ project "bimg"
 		path.join(BIMG_DIR, "include/bimg/*.h"),
 		path.join(BIMG_DIR, "src/image.cpp"),
 		path.join(BIMG_DIR, "src/image_gnf.cpp"),
+		path.join(BIMG_DIR, "src/image_decode.cpp"),
 		path.join(BIMG_DIR, "src/*.h"),
 		path.join(BIMG_DIR, "3rdparty/astc-codec/src/decoder/*.cc")
 	}
@@ -114,8 +116,9 @@ project "bimg"
 	{
 		path.join(BX_DIR, "include"),
 		path.join(BIMG_DIR, "include"),
+		path.join(BIMG_DIR, "3rdparty"),
 		path.join(BIMG_DIR, "3rdparty/astc-codec"),
-		path.join(BIMG_DIR, "3rdparty/astc-codec/include"),
+		path.join(BIMG_DIR, "3rdparty/astc-codec/include")
 	}
 	setBxCompat()
 

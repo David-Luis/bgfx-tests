@@ -2,7 +2,6 @@
 
 #include <stdio.h>
 #include <bx/bx.h>
-#include <bx/allocator.h>
 #include <bx/file.h>
 #include <bx/timer.h>
 #include <bgfx/bgfx.h>
@@ -17,15 +16,8 @@
 
 namespace GLFWBGFXApplicationInternal
 {
-	static bx::DefaultAllocator s_allocator;
-
 	bool s_showStats = false;
 	constexpr bgfx::ViewId kClearView = 0;
-
-	bx::AllocatorI* GetAllocator()
-	{
-		return &s_allocator;
-	}
 
 	void glfw_keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods)
 	{
@@ -38,6 +30,8 @@ namespace GLFWBGFXApplicationInternal
 		fprintf(stderr, "GLFW error %d: %s\n", error, description);
 	}
 }
+
+bx::DefaultAllocator CGLFWBGFXApplication::s_allocator;
 
 CGLFWBGFXApplication::CGLFWBGFXApplication(int width, int height)
 	: m_width(width)
@@ -133,7 +127,7 @@ void CGLFWBGFXApplication::InitGraphics()
 
 void CGLFWBGFXApplication::InitSystems()
 {
-	m_fileReader = BX_NEW(GLFWBGFXApplicationInternal::GetAllocator(), bx::FileReader);
+	m_fileReader = BX_NEW(GetAllocator(), bx::FileReader);
 }
 
 bx::FileReaderI* CGLFWBGFXApplication::GetFileReader()

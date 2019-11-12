@@ -2,7 +2,8 @@ $input v_color0
 
 uniform vec4 u_time;
 
-#include "common/common.sh"
+#include "common/bgfx_shader.sh"
+#include "common/shaderlib.sh"
 
 void main()
 {

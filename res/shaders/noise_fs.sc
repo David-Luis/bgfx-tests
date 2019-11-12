@@ -1,6 +1,7 @@
 $input v_color0, v_texcoord0
 
-#include "common/common.sh"
+#include "common/bgfx_shader.sh"
+#include "common/shaderlib.sh"
 
 // Modification of https://www.shadertoy.com/view/4ssXRX
 // Added a second way to do triangle noise without doing
