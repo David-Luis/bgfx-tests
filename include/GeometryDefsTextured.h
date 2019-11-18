@@ -108,3 +108,44 @@ struct STexturedCubeGeometry : public SGeometry
 		bgfx::destroy(m_vbh);
 	}
 };
+
+struct STexturedPlaneGeometry : public SGeometry
+{
+	std::array<PosNormalTangentTexcoordVertex, 4> m_vertices;
+	std::array<uint16_t, 6> m_triList;
+
+	STexturedPlaneGeometry(SVertexTexturedLayout& layout)
+	{
+		m_vertices =
+		{
+			{ { -1.0f,  1.0f,  0.0f, BGFXUtils::EncodeNormalRgba8(0.0f,  0.0f,  1.0f), 0,      0,      0 },
+		{ 1.0f,  1.0f,  0.0f, BGFXUtils::EncodeNormalRgba8(0.0f,  0.0f,  1.0f), 0, 0x7fff,      0 },
+		{ -1.0f, -1.0f,  0.0f, BGFXUtils::EncodeNormalRgba8(0.0f,  0.0f,  1.0f), 0,      0, 0x7fff },
+		{ 1.0f, -1.0f,  0.0f, BGFXUtils::EncodeNormalRgba8(0.0f,  0.0f,  1.0f), 0, 0x7fff, 0x7fff }
+		} };
+
+		m_triList =
+		{
+			0,  2,  1,
+			1,  2,  3,
+		};
+
+		m_vbh = bgfx::createVertexBuffer(
+			// Static data can be passed with bgfx::makeRef
+			bgfx::makeRef(m_vertices.data(), sizeof(m_vertices))
+			, layout.ms_layout
+		);
+
+		// Create static index buffer for triangle list rendering.
+		m_ibh = bgfx::createIndexBuffer(
+			// Static data can be passed with bgfx::makeRef
+			bgfx::makeRef(m_triList.data(), sizeof(m_triList))
+		);
+	}
+
+	~STexturedPlaneGeometry()
+	{
+		bgfx::destroy(m_ibh);
+		bgfx::destroy(m_vbh);
+	}
+};

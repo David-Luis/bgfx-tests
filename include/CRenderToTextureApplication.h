@@ -16,11 +16,23 @@ protected:
 	void OnRender(float dt) override;
 
 private:
-	std::unique_ptr<SGeometry> geometry;
-	bgfx::TextureHandle m_textureColor;
-	bgfx::TextureHandle m_textureNormal;
+	void InitializeScene();
+	void InitializeRenderToTexture();
+	void InitializeUI();
 
-	bgfx::ProgramHandle m_program;
+	void RenderSceneToTexture();
+	void RenderToBackbuffer();
+	void RenderPostProcessScene(bgfx::ViewId viewId);
+	void RenderSimulatedUI(bgfx::ViewId viewId);
+
+	std::unique_ptr<SGeometry> m_geometry;
+	bgfx::TextureHandle m_textureColorTextureHandle;
+	bgfx::TextureHandle m_textureNormalTextureHandle;
+
+	bgfx::FrameBufferHandle m_frameBufferHandle;
+	bgfx::TextureHandle m_frameBufferTextureHandle;
+
+	bgfx::ProgramHandle m_programScene;
 	bgfx::UniformHandle m_timeUniform;
 	bgfx::UniformHandle m_texColorUniform;
 	bgfx::UniformHandle m_texNormalUniform;
@@ -28,4 +40,15 @@ private:
 	bgfx::UniformHandle m_lightRgbInnerRUniform;
 
 	uint16_t m_numLights;
+
+
+	//render to texture
+	bgfx::UniformHandle m_dataUniform;
+	std::unique_ptr<SGeometry> m_viewGeometry;
+	bgfx::ProgramHandle m_programPostProcess;
+	bgfx::UniformHandle m_texColorUniformPostProccess;
+
+
+	//"UI"
+	bgfx::ProgramHandle m_programUI;
 };

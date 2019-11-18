@@ -49,6 +49,8 @@ create_shader("test")
 create_shader("graphs")
 create_shader("raymarching_and_sdf")
 create_shader("textured")
+create_shader("gray")
+create_shader("texture_no_light")
 
 create_texture("fieldstone-rgba")
 create_texture("fieldstone-n")
